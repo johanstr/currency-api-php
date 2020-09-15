@@ -1,0 +1,13 @@
+#currency-info, #calculated-value {
+    display: block;
+    width: 100%;
+    margin-top:40px;
+}
+
+#currency-info {
+    font-size: 20px;
+}
+
+#calculated-value {
+    font-size: 40px;
+}

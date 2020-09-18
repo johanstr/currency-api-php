@@ -2,12 +2,10 @@
 
 @require_once('app/apifunctions.php');
 
-$cmd = '';
+$cmd = 'ALL';
 
-if(!isset($_GET['cmd'])) {
-    $cmd = 'ALL';
-} else {
-    $cmd = str_toupper($_GET['cmd']);
+if(isset($_GET['cmd'])) {
+    $cmd = strtoupper($_GET['cmd']);
 }
 
 switch($cmd) {
@@ -20,7 +18,10 @@ switch($cmd) {
         break;
 
     case 'CALC':
-
+        $from = $_GET['from'];
+        $value = $_GET['value'];
+        $to = $_GET['to'];
+        calculate($from, $value, $to);
         break;
 
     default:

@@ -50,7 +50,7 @@ class HttpStatus
         return 'Unknown http status code "' . htmlentities($code) . '"';
     }
 
-    public static function http_return($code, $extra_msg = '', $die_app = true)
+    public static function http_return($data, $code, $extra_msg = '', $die_app = false)
     {
         $protocol = (isset($_SERVER['SERVER_PROTOCOL']) ?
             $_SERVER['SERVER_PROTOCOL'] :
@@ -61,13 +61,15 @@ class HttpStatus
             . ' '
             . self::getMessage($code)
             . (empty($extra_msg) ? '' : ' ' . $extra_msg));
+        header('Content-Type: application/json');
 
         if($die_app) {
-            header('Content-Type: application/json');
             die(json_encode([
                 'statuscode' => $code,
                 'statusmsg' => self::getMessage($code) . (empty($extra_msg) ? '' : ' ' . $extra_msg)
             ]));
         }
+
+        echo $data;
     }
 }

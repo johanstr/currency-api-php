@@ -4,6 +4,7 @@ let select_from_currency = document.querySelector('#fromcurrency');
 let select_to_currency = document.querySelector('#tocurrency');
 let input_value = document.querySelector('#currency-value');
 let info_span = document.querySelector('#currency-info');
+let calculted_value_output = document.querySelector('#calculated-value');
 let showinfo_button = document.querySelector('#showinfo');
 let calc_button = document.querySelector('#calc');
 let valuta = null;
@@ -25,6 +26,7 @@ async function calculate() {
         .then( response => response.json() )
         .then(data => {
             console.log(data);
+            calculted_value_output.innerHTML = `${parseFloat(data.calculated_value).toFixed(2)} ${data.to}`;
         })
         .catch(error => console.log(error));
 }
